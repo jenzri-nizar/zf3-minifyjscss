@@ -1,6 +1,6 @@
 {
   "name": "jenzri-nizar/zf3-minify",
-  "description": "Zend Framework SCSS Compiler",
+  "description": "Zend Framework 3 minify",
   "keywords": ["css minify", "js minify", "Zend minify", "Zend Framework 3", "Zf3 minify"],
   "license": [
     "MIT"
