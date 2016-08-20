@@ -2,7 +2,7 @@
 /**
  * User: Jenzri Nizar
  * Date: 19/08/2016
- * Time: 14:21
+ * Time: 15:56
  */
 
 namespace Zf3\Minify;
