@@ -7,7 +7,7 @@ Zend Framework 3 minify
 Dans la section:"require"
 
 ```php
-"jenzri-nizar/zf3-minify": "dev-master"
+"jenzri-nizar/zf3-minify": "^1.0"
 ```
 2) Ouvrez votre ligne de commande et exécutez
 
