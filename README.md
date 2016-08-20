@@ -1,5 +1,5 @@
-# zf3-minify
-Zend Framework 3 minify 
+# Zend Framework 3 minify
+Zend Framework 3 minify  (Css | Js)
 
 ##Installation
 
