@@ -7,7 +7,7 @@ Zend Framework 3 minify  (Css | Js)
 Dans la section:"require"
 
 ```php
-"jenzri-nizar/zf3-minify": "^1.0"
+"jenzri-nizar/zf3-minifyjscss": "^1.0"
 ```
 2) Ouvrez votre ligne de commande et exécutez
 
@@ -19,6 +19,6 @@ Le module doit être enregistré dans **config/modules.config.php**
 ```php
 'modules' => array(
     '...',
-    'Zf3\Minifyjscss'
+    ''Zf3\Minifyjscss''
 ),
 ```
