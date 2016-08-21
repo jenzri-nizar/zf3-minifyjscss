@@ -1,19 +1,20 @@
 <?php
 /**
  * User: Jenzri Nizar
- * Date: 20/08/2016
- * Time: 15:56
+ * Date: 19/08/2016
+ * Time: 14:21
  */
 
-namespace Zf3\Minifyjscss\View\Helper;
+namespace Zf3\Scss\View\Helper;
 
-
-class HeadLink  extends \Zend\View\Helper\HeadLink
+use Leafo\ScssPhp\Compiler;
+class headLink extends \Zend\View\Helper\HeadLink
 {
+
     protected $baseUrl;
 
     /**
-     * @return mixed
+     * @return String
      */
     public function getBaseUrl()
     {
@@ -21,12 +22,13 @@ class HeadLink  extends \Zend\View\Helper\HeadLink
     }
 
     /**
-     * @param mixed $baseUrl
+     * @param String $baseUrl
      */
     public function setBaseUrl($baseUrl)
     {
         $this->baseUrl = $baseUrl;
     }
+
 
     public function itemToString(\stdClass $item)
     {
@@ -35,31 +37,17 @@ class HeadLink  extends \Zend\View\Helper\HeadLink
         $info=pathinfo($file);
 
         $dirroot=$_SERVER['DOCUMENT_ROOT'];
-        $filename=$info['dirname']."/".$info['filename']."-min.css";
-        if($info['extension']=="css" && (!file_exists($dirroot.$filename) || (date ("F d Y H:i:s.", filemtime($dirroot.$filename))<date ("F d Y H:i:s.", filemtime($dirroot.$file)))))
+        $filename=$info['dirname']."/".$info['filename'].".css";
+        if($info['extension']=="scss" && (!file_exists(".".$filename) || (date ("F d Y H:i:s.", filemtime(".".$filename))<date ("F d Y H:i:s.", filemtime(".".$file)))))
         {
-            $filename=$info['dirname']."/".$info['filename']."-min.".$info['extension'];
-            $lastModified = $_SERVER['REQUEST_TIME'] - 86400;
-            $minify = new \Minify(new \Minify_Cache_File());
-            $output = $minify->serve('Files', array(
-                'files' => [$dirroot.$file], // controller casts to array
-                'quiet' => true,
-                'lastModifiedTime' => $lastModified,
-                'encodeOutput' => false,
-                'maxAge' => 86400
-            ));
+            $compiler = new Compiler();
+            $string= $compiler->compile(file_get_contents($dirroot.$file));
+            file_put_contents($dirroot.$filename,$string);
 
-
-            file_put_contents($dirroot.$filename, $output['content']);
             $item->href=$filename;
         }
-        else{
-            $filename=$info['dirname']."/".$info['filename']."-min.".$info['extension'];
-            $item->href=$filename;
-        }
+
         return parent::itemToString($item);
     }
-
-
 
 }
