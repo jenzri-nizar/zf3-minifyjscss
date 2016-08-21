@@ -7,7 +7,7 @@ Zend Framework 3 minify  (Css | Js)
 Dans la section:"require"
 
 ```php
-"jenzri-nizar/zf3-minifyjscss": "v1.0.1"
+"jenzri-nizar/zf3-minifyjscss": "dev-master"
 ```
 2) Ouvrez votre ligne de commande et exécutez
 
