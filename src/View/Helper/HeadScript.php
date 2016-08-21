@@ -5,11 +5,13 @@
  * Time: 15:56
  */
 
+
 namespace Zf3\Minifyjscss\View\Helper;
 
 
-class HeadLink  extends \Zend\View\Helper\HeadLink
+class HeadScript extends \Zend\View\Helper\HeadScript
 {
+
     protected $baseUrl;
 
     /**
@@ -28,15 +30,20 @@ class HeadLink  extends \Zend\View\Helper\HeadLink
         $this->baseUrl = $baseUrl;
     }
 
-    public function itemToString(\stdClass $item)
+    public function itemToString($item, $indent, $escapeStart, $escapeEnd)
     {
 
-        $file=$item->href;
+        $file=$item->attributes['src'];
+        if (!filter_var($file, FILTER_VALIDATE_URL) === false) {
+            return parent::itemToString($item, $indent, $escapeStart, $escapeEnd);
+        }
+        //$filesToMinify = $this->getFiles(array($file));
+
         $info=pathinfo($file);
 
         $dirroot=$_SERVER['DOCUMENT_ROOT'];
-        $filename=$info['dirname']."/".$info['filename']."-min.css";
-        if($info['extension']=="css" && (!file_exists($dirroot.$filename) || (date ("F d Y H:i:s.", filemtime($dirroot.$filename))<date ("F d Y H:i:s.", filemtime($dirroot.$file)))))
+        $filename=$info['dirname']."/".$info['filename']."-min.".$info['extension'];
+        if($info['extension']=="js" && (!file_exists($dirroot.$filename) || (date ("F d Y H:i:s.", filemtime($dirroot.$filename))<date ("F d Y H:i:s.", filemtime($dirroot.$file)))))
         {
             $filename=$info['dirname']."/".$info['filename']."-min.".$info['extension'];
             $lastModified = $_SERVER['REQUEST_TIME'] - 86400;
@@ -51,15 +58,13 @@ class HeadLink  extends \Zend\View\Helper\HeadLink
 
 
             file_put_contents($dirroot.$filename, $output['content']);
-            $item->href=$filename;
+            $item->attributes['src']=$filename;
         }
         else{
             $filename=$info['dirname']."/".$info['filename']."-min.".$info['extension'];
-            $item->href=$filename;
+            $item->attributes['src']=$filename;
         }
-        return parent::itemToString($item);
+        return parent::itemToString($item, $indent, $escapeStart, $escapeEnd);
     }
-
-
 
 }
