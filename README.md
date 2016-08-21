@@ -19,6 +19,6 @@ Le module doit être enregistré dans **config/modules.config.php**
 ```php
 'modules' => array(
     '...',
-    ''Zf3\Minify''
+    'Zf3\Minifyjscss'
 ),
 ```
