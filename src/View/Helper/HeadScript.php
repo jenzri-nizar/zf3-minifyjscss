@@ -6,7 +6,7 @@
  */
 
 
-namespace Zf3\Minify\View\Helper;
+namespace Zf3\Minifyjscss\View\Helper;
 
 
 class HeadScript extends \Zend\View\Helper\HeadScript

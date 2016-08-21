@@ -5,7 +5,7 @@
  * Time: 15:56
  */
 
-namespace Zf3\Minify\View\Helper;
+namespace Zf3\Minifyjscss\View\Helper;
 
 
 class HeadLink  extends \Zend\View\Helper\HeadLink

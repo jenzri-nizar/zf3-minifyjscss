@@ -1,5 +1,5 @@
 {
-  "name": "jenzri-nizar/zf3-minify",
+  "name": "jenzri-nizar/zf3-minifyjscss",
   "description": "Zend Framework 3 minify",
   "keywords": ["css minify", "js minify", "Zend minify", "Zend Framework 3", "Zf3 minify"],
   "license": [
@@ -16,6 +16,6 @@
     "mrclay/minify": "2.3.0"
   },
   "autoload": {
-    "psr-4": { "Zf3\\Minify\\": "src/" }
+    "psr-4": { "Zf3\\Minifyjscss\\": "src/" }
   }
 }
